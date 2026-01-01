@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import {
-    Heart, MapPin, Sparkles,
+    Heart, Calendar, MapPin, Music, Sparkles,
     Users, Volume2, VolumeX, Clock, ExternalLink, Navigation, Play
 } from 'lucide-react';
 
@@ -194,7 +194,7 @@ export default function App() {
     const musicAudioRef = useRef(null);
     const longPressTimer = useRef(null);
 
-    // Timer Logic References
+    // Timer Logic References (For Resumable Slides)
     const timerRef = useRef(null);
     const startTimestampRef = useRef(0);
     const remainingTimeRef = useRef(0);
@@ -239,6 +239,23 @@ export default function App() {
             setPhase('countdown');
             setIsTransitioning(false);
         }, 200);
+    };
+
+    // --- HANDLER: STOP MUSIC ON MAP CLICK ---
+    const handleMapClick = (e, link) => {
+        e.stopPropagation(); // Prevent navigation click
+
+        // Stop the music
+        if (musicAudioRef.current) {
+            musicAudioRef.current.pause();
+            musicAudioRef.current.currentTime = 0;
+        }
+
+        // Pause the slideshow
+        setIsPaused(true);
+
+        // Open the map link
+        window.open(link, '_blank');
     };
 
     // --- EFFECT: AUDIO PLAY/PAUSE SYNC ---
@@ -289,6 +306,8 @@ export default function App() {
         }
     }, [phase, countdown]);
 
+    // --- SMART AUTO PLAY LOGIC (RESUMABLE) ---
+    // Reset timer duration when slide changes
     useEffect(() => {
         const duration = WEDDING_DATA.events[currentEventIndex].duration || 10000;
         remainingTimeRef.current = duration;
@@ -345,6 +364,9 @@ export default function App() {
 
         // If we were paused (held long enough), just resume
         if (isPaused) {
+            // Don't auto-resume if map was clicked (user must manually navigate or interact to potentially resume,
+            // but effectively map click is an exit point for this session logic)
+            // For simple hold-to-pause, we resume.
             setIsPaused(false);
             return;
         }
@@ -474,14 +496,17 @@ export default function App() {
                                 </div>
 
                                 {/* LOCATION SECTION */}
-                                <a href={data.mapLink} target="_blank" rel="noreferrer" onClick={(e) => e.stopPropagation()} className="flex items-center gap-4 bg-white p-3 rounded-2xl border border-gray-100 shadow-sm active:scale-95 transition-transform">
+                                <div
+                                    onClick={(e) => handleMapClick(e, data.mapLink)}
+                                    className="flex items-center gap-4 bg-white p-3 rounded-2xl border border-gray-100 shadow-sm active:scale-95 transition-transform cursor-pointer"
+                                >
                                     <div className={`p-2.5 rounded-full ${theme.iconBg} ${theme.accent}`}><MapPin size={18} /></div>
                                     <div className="text-left flex-1 min-w-0">
                                         <p className="text-[10px] uppercase opacity-60 font-bold flex items-center gap-1">Venue <ExternalLink size={10}/></p>
                                         <p className={`font-medium text-sm ${theme.text} truncate`}>{data.venue}</p>
                                     </div>
                                     <div className={`${theme.accent} opacity-50`}><Navigation size={16} /></div>
-                                </a>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -568,7 +593,7 @@ export default function App() {
             <audio ref={tickAudioRef} src="/count.wav" preload="auto" />
             <audio ref={musicAudioRef} src="/main_intro.mp3" preload="auto" />
 
-            {/* --- BACKGROUND OVERLAYS --- */}
+            {/* --- BACKGROUND OVERLAYS (PERSISTENT) --- */}
             <div className="absolute inset-0 z-0 pointer-events-none">
                 <div className="absolute inset-0 opacity-20 bg-[url('https://www.transparenttextures.com/patterns/cream-paper.png')]"></div>
                 {/* Gold Vignette */}
