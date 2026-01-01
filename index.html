@@ -9,31 +9,23 @@
   <!--  LINK PREVIEW SETTINGS (The "Card" look for WhatsApp/Sharing)     -->
   <!-- ================================================================= -->
 
-  <!-- 1. The Title that appears in the link card -->
   <title>Twinkle weds Navjot | Wedding Invitation</title>
   <meta property="og:title" content="Twinkle weds Navjot | Wedding Invitation" />
   <meta name="twitter:title" content="Twinkle weds Navjot | Wedding Invitation" />
 
-  <!-- 2. The Description/Subtitle in the link card -->
   <meta name="description" content="We request the pleasure of your presence on the auspicious occasion of our wedding. Tap to view the invitation." />
   <meta property="og:description" content="We request the pleasure of your presence on the auspicious occasion of our wedding. Tap to view the invitation." />
   <meta name="twitter:description" content="We request the pleasure of your presence on the auspicious occasion of our wedding. Tap to view the invitation." />
 
-  <!-- 3. The Image that appears in the card -->
-  <!-- Ideally, use the FULL URL to ensure it works on all apps -->
+  <!-- IMAGE PREVIEW -->
   <meta property="og:image" content="https://wedding-invitation-nine-indol.vercel.app/thumbnail.png" />
   <meta name="twitter:image" content="https://wedding-invitation-nine-indol.vercel.app/thumbnail.png" />
-
-  <!-- For some apps that prefer relative paths -->
   <link rel="image_src" href="%PUBLIC_URL%/thumbnail.png" />
 
   <meta name="twitter:card" content="summary_large_image" />
-
-  <!-- Standard Website settings -->
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://wedding-invitation-nine-indol.vercel.app/" />
 
-  <!-- App-like experience (Hides browser bars when added to home screen) -->
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
 
@@ -45,5 +37,8 @@
 <body>
 <noscript>You need to enable JavaScript to run this app.</noscript>
 <div id="root"></div>
+
+<!-- IMPORTANT: This script connects HTML to React. If your file is named index.jsx, change main.jsx to index.jsx -->
+<script type="module" src="/src/main.jsx"></script>
 </body>
 </html>
