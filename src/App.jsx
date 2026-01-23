@@ -270,18 +270,6 @@ export default function App() {
                 </div>
             )}
 
-            {/* --- NEW: FLOWER SHOWER BUTTON (Clean & High Perf) --- */}
-            {phase === 'playing' && !isOutro && (
-                <div className="fixed bottom-safe right-6 z-50 pointer-events-auto">
-                    <button
-                        onPointerUp={(e) => { e.stopPropagation(); triggerHaptic(); triggerConfetti(); }}
-                        className="p-3 bg-[#800020] backdrop-blur-md rounded-full text-[#d4af37] border border-[#d4af37] shadow-xl active:scale-95 transition-transform"
-                    >
-                        {/* Simple Star/Sparkle Icon instead of Flower */}
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="m12 3-1.912 5.813a2 2 0 0 1-1.275 1.275L3 12l5.813 1.912a2 2 0 0 1 1.275 1.275L12 21l1.912-5.813a2 2 0 0 1 1.275-1.275L21 12l-5.813-1.912a2 2 0 0 1-1.275-1.275L12 3Z"/></svg>
-                    </button>
-                </div>
-            )}
 
             <div className={containerClasses}>
                 {phase === 'idle' && (
