@@ -21,11 +21,24 @@ export const WEDDING_DATA = {
             title: "Mehendi Ki Raat",
             description: "Hathan te sajau Mehendi, Naam likhau apne Maahi da.",
             date: "Feb 09, 2026",
-            time: "4:00 PM",
+            time: "9:00 AM",
             venue: "Residence, Saraswati Nagar",
             mapLink: "https://www.google.com/maps/search/?api=1&query=Saraswati+Nagar+Mustafabad",
             theme: "mehendi",
             videoSrc: "/mehendi.mp4",
+            duration: 6000
+        },
+        {
+            id: 'haldi',
+            type: 'event',
+            title: "Maiyan & Haldi",
+            description: "Shagna di Haldi, Rang Khushiyan da chadhya.",
+            date: "Feb 9, 2026",
+            time: "4:00 PM",
+            venue: "Residence, Saraswati Nagar",
+            mapLink: "https://www.google.com/maps/search/?api=1&query=Saraswati+Nagar+Mustafabad",
+            theme: "haldi",
+            videoSrc: "/haldi.mp4",
             duration: 6000
         },
         {
@@ -39,19 +52,6 @@ export const WEDDING_DATA = {
             mapLink: "https://www.google.com/maps/search/?api=1&query=Saraswati+Nagar+Mustafabad",
             theme: "sangeet",
             videoSrc: "/dance.mp4",
-            duration: 6000
-        },
-        {
-            id: 'haldi',
-            type: 'event',
-            title: "Maiyan & Haldi",
-            description: "Shagna di Haldi, Rang Khushiyan da chadhya.",
-            date: "Feb 10, 2026",
-            time: "8:00 AM",
-            venue: "Residence, Saraswati Nagar",
-            mapLink: "https://www.google.com/maps/search/?api=1&query=Saraswati+Nagar+Mustafabad",
-            theme: "haldi",
-            videoSrc: "/haldi.mp4",
             duration: 6000
         },
         {

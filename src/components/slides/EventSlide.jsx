@@ -1,5 +1,5 @@
 import React from 'react';
-import { Sparkles, Clock, MapPin, ExternalLink, Navigation } from 'lucide-react';
+import { Sparkles, Clock, MapPin, ExternalLink, Navigation, Calendar } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { THEMES } from '../../data/theme-config';
 
@@ -39,9 +39,6 @@ export default function EventSlide({ data, onMapClick }) {
                 >
                     {/* SCROLL CONTAINER */}
                     <div className="w-full h-full overflow-y-auto scrollbar-hide">
-                        {/* CHANGED: 'justify-evenly' spreads items nicely to fill gaps.
-                           'min-h-full' forces it to use the full height available.
-                        */}
                         <div className="min-h-full flex flex-col items-center justify-evenly p-6 pb-20">
 
                             {/* TOP GROUP: Badge + Title + Desc */}
@@ -63,14 +60,18 @@ export default function EventSlide({ data, onMapClick }) {
                             {/* DECORATIVE DIVIDER */}
                             <div className="w-16 h-[2px] bg-gradient-to-r from-transparent via-[#d4af37]/60 to-transparent my-2 opacity-50"></div>
 
-                            {/* BOTTOM GROUP: Details (Increased padding to p-4 to look chunkier/fuller) */}
+                            {/* BOTTOM GROUP: Details */}
                             <div className="w-full space-y-4 max-w-sm mx-auto">
-                                {/* TIME */}
+
+                                {/* DATE & TIME (UPDATED) */}
                                 <div className="flex items-center gap-4 bg-white/50 p-4 rounded-2xl border border-gray-100 shadow-sm">
-                                    <div className={`p-2.5 rounded-full ${theme.iconBg} ${shimmerClass}`}><Clock size={20} /></div>
+                                    <div className={`p-2.5 rounded-full ${theme.iconBg} ${shimmerClass}`}>
+                                        <Calendar size={20} />
+                                    </div>
                                     <div className="text-left">
-                                        <p className={`text-[10px] uppercase ${shimmerClass} opacity-60 font-bold`}>Time</p>
-                                        <p className={`font-medium text-base ${shimmerClass} font-bold`}>{data.time}</p>
+                                        <p className={`text-[10px] uppercase ${shimmerClass} opacity-60 font-bold mb-0.5`}>Date & Time</p>
+                                        <p className={`font-medium text-base ${shimmerClass} font-bold leading-tight`}>{data.date}</p>
+                                        <p className={`text-sm ${shimmerClass} font-medium opacity-80 leading-tight`}>{data.time}</p>
                                     </div>
                                 </div>
 
